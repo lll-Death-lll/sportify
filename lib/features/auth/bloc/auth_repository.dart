@@ -38,4 +38,20 @@ class AuthRepository {
   bool isAuthorized() {
     return _client.auth.currentUser != null;
   }
+
+  Future<int?> userId() async {
+    var response = await _client.auth.getUser();
+    if (response.user == null) {
+      return null;
+    }
+
+    var idTable =
+        await _client
+            .from('users')
+            .select('id')
+            .eq('auth_id', response.user!.id)
+            .single();
+
+    return idTable['id'];
+  }
 }
