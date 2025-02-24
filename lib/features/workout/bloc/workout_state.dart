@@ -11,19 +11,19 @@ final class WorkoutInitial extends WorkoutState {}
 final class WorkoutLoadingState extends WorkoutState {}
 
 final class WorkoutAvailableState extends WorkoutState {
-  List<Workout> availableWorkouts;
+  final List<Workout> availableWorkouts;
 
   WorkoutAvailableState({required this.availableWorkouts});
 }
 
 final class WorkoutInProgressState extends WorkoutState {
-  Workout workout;
+  final Workout workout;
 
   WorkoutInProgressState({required this.workout});
 }
 
 final class WorkoutCompletedState extends WorkoutState {
-  Workout workout;
+  final Workout workout;
 
   WorkoutCompletedState({required this.workout});
 }

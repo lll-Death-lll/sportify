@@ -6,7 +6,7 @@ sealed class WorkoutEvent {}
 final class WorkoutInitialEvent extends WorkoutEvent {}
 
 final class WorkoutSelectedEvent extends WorkoutEvent {
-  Workout selectedWorkout;
+  final Workout selectedWorkout;
 
   WorkoutSelectedEvent({required this.selectedWorkout});
 }
