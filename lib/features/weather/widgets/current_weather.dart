@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sportify/features/weather/open_meteo.dart';
 
 class CurrentWeather extends StatelessWidget {
-  WeatherCondition weatherCondition;
+  final WeatherCondition weatherCondition;
 
-  CurrentWeather({super.key, required this.weatherCondition});
+  const CurrentWeather({super.key, required this.weatherCondition});
 
   @override
   Widget build(BuildContext context) {
-    Weather weather = Weather(condition: weatherCondition);
+    final Weather weather = Weather(condition: weatherCondition);
 
     return Card(
       child: Column(
