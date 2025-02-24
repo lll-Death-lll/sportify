@@ -33,24 +33,7 @@ class Weather {
   bool isGood = false;
 
   Weather({required this.condition}) {
-    switch (condition) {
-      case WeatherCondition.clear:
-        isGood = true;
-      case WeatherCondition.cloudy:
-        isGood = true;
-      case WeatherCondition.fog:
-        isGood = false;
-      case WeatherCondition.drizzle:
-        isGood = false;
-      case WeatherCondition.rain:
-        isGood = false;
-      case WeatherCondition.snow:
-        isGood = false;
-      case WeatherCondition.thunderstorm:
-        isGood = false;
-      case WeatherCondition.unknown:
-        isGood = false;
-    }
+    isGood = isGoodWeatherCondition(condition);
   }
 
   IconData getIcon() {

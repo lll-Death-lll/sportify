@@ -21,6 +21,21 @@ enum WeatherCondition {
   unknown,
 }
 
+bool isGoodWeatherCondition(WeatherCondition condition) {
+  switch (condition) {
+    case WeatherCondition.clear:
+    case WeatherCondition.cloudy:
+      return true;
+    case WeatherCondition.fog:
+    case WeatherCondition.drizzle:
+    case WeatherCondition.rain:
+    case WeatherCondition.snow:
+    case WeatherCondition.thunderstorm:
+    case WeatherCondition.unknown:
+      return false;
+  }
+}
+
 WeatherCondition wmoCodeToWeatherCondition(int code) {
   switch (code) {
     case 0:
