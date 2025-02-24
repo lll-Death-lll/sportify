@@ -53,7 +53,6 @@ class Weather {
       case WeatherCondition.thunderstorm:
         return Icons.thunderstorm;
       case WeatherCondition.unknown:
-      default:
         return Icons.question_mark;
     }
   }
@@ -75,7 +74,6 @@ class Weather {
       case WeatherCondition.thunderstorm:
         return "Гроза";
       case WeatherCondition.unknown:
-      default:
         return "Неизвестно";
     }
   }
