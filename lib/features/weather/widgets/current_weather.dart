@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sportify/features/weather/open_meteo.dart';
+import 'package:sportify/features/weather/weather_repository.dart';
 
 class CurrentWeather extends StatelessWidget {
   final WeatherCondition weatherCondition;
@@ -33,7 +33,7 @@ class Weather {
   bool isGood = false;
 
   Weather({required this.condition}) {
-    isGood = isGoodWeatherCondition(condition);
+    isGood = condition.isGood();
   }
 
   IconData getIcon() {
