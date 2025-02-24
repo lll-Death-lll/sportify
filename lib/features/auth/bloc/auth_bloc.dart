@@ -9,8 +9,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepository authRepository;
 
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {
-      // TODO: implement event handler
+    on<AuthSignInEvent>((event, emit) async {
+      emit(AuthInProcessState());
+
+      bool success = await authRepository.signIn();
+
+      if (success) {
+        emit(AuthFailureState());
+      } else {
+        emit(AuthSuccessState());
+      }
+    });
+    on<AuthSignOutEvent>((event, emit) async {
+      await authRepository.signOut();
+      emit(AuthInitial());
     });
   }
 }
