@@ -18,8 +18,8 @@ class CurrentWeather extends StatelessWidget {
             title: Text(weather.getName()),
             subtitle: Text(
               weather.isGood
-                  ? 'Погода хорошая, можно заниматься'
-                  : "Плохая погода, останьтесь дома",
+                  ? 'Погода хорошая, можно заниматься на улице'
+                  : "Плохая погода, позанимайтесь дома",
             ),
           ),
         ],
