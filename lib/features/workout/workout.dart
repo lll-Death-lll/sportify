@@ -1,7 +1,9 @@
+import 'package:sportify/features/streak/streaks_repository.dart';
+
 class Workout {
   int id;
   String name;
-  Difficulty difficulty;
+  Rank difficulty;
   bool isOutside;
 
   Workout({
@@ -24,42 +26,8 @@ class Workout {
     return Workout(
       id: map['id'],
       name: map['name'],
-      difficulty: Difficulty.values[map['difficulty']],
+      difficulty: Rank.values[map['difficulty']],
       isOutside: map['is_outside'],
     );
-  }
-}
-
-enum Difficulty {
-  beginner,
-  intermediate,
-  advanced,
-  pro;
-
-  @override
-  String toString() {
-    switch (this) {
-      case Difficulty.beginner:
-        return "Beginner";
-      case Difficulty.intermediate:
-        return "Intermediate";
-      case Difficulty.advanced:
-        return "Advanced";
-      case Difficulty.pro:
-        return "Pro";
-    }
-  }
-
-  int toInt() {
-    switch (this) {
-      case Difficulty.beginner:
-        return 0;
-      case Difficulty.intermediate:
-        return 1;
-      case Difficulty.advanced:
-        return 2;
-      case Difficulty.pro:
-        return 3;
-    }
   }
 }
