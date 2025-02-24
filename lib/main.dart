@@ -5,6 +5,7 @@ import 'package:sportify/features/auth/bloc/auth_bloc.dart';
 import 'package:sportify/features/streak/streaks_repository.dart';
 import 'package:sportify/features/weather/weather_repository.dart';
 import 'package:sportify/features/workout/bloc/workout_bloc.dart';
+import 'package:sportify/features/workout/bloc/workout_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 // TODO Персонализированные тренировки
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           RepositoryProvider(create: (context) => AuthRepository()),
           RepositoryProvider(create: (context) => StreaksRepository()),
           RepositoryProvider(create: (context) => WeatherRepository()),
+          RepositoryProvider(create: (context) => WorkoutRepository()),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -48,8 +50,10 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (BuildContext context) {
                 return WorkoutBloc(
+                  authRepository: context.read<AuthRepository>(),
                   streaksRepository: context.read<StreaksRepository>(),
                   weatherRepository: context.read<WeatherRepository>(),
+                  workoutRepository: context.read<WorkoutRepository>(),
                 );
               },
             ),
