@@ -9,8 +9,8 @@ class AuthRepository {
   GoTrueClient get auth => _client.auth;
 
   Future<bool> signIn() async {
-    // TODO replace with an actual id
-    const webClientId = 'my-web.apps.googleusercontent.com';
+    const webClientId =
+        '369629569845-j468t4qeh12o5v24s1m1b6bcel0ksfji.apps.googleusercontent.com';
 
     final GoogleSignIn googleSignIn = GoogleSignIn(serverClientId: webClientId);
     final googleUser = await googleSignIn.signIn();
