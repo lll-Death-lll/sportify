@@ -75,17 +75,17 @@ enum Rank {
 
 class Streak {
   int id;
-  int user_id;
-  int workout_id;
-  DateTime created_at;
-  DateTime? completed_at;
+  int userId;
+  int workoutId;
+  DateTime createdAt;
+  DateTime? completedAt;
 
   Streak({
     required this.id,
-    required this.user_id,
-    required this.workout_id,
-    required this.created_at,
-    this.completed_at,
+    required this.userId,
+    required this.workoutId,
+    required this.createdAt,
+    this.completedAt,
   });
 }
 
