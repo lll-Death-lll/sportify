@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -8,12 +11,13 @@ class AuthRepository {
 
   GoTrueClient get auth => _client.auth;
 
-  Future<bool> signIn() async {
+  Future<bool> _nativeGoogleSignIn() async {
     const webClientId =
         '369629569845-j468t4qeh12o5v24s1m1b6bcel0ksfji.apps.googleusercontent.com';
 
     final GoogleSignIn googleSignIn = GoogleSignIn(serverClientId: webClientId);
     final googleUser = await googleSignIn.signIn();
+
     final googleAuth = await googleUser!.authentication;
     final accessToken = googleAuth.accessToken;
     final idToken = googleAuth.idToken;
@@ -29,6 +33,14 @@ class AuthRepository {
     );
 
     return true;
+  }
+
+  Future<bool> signIn() async {
+    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
+      return _nativeGoogleSignIn();
+    }
+
+    return Supabase.instance.client.auth.signInWithOAuth(OAuthProvider.google);
   }
 
   Future<void> signOut() async {
