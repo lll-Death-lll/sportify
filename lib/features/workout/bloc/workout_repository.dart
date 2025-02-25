@@ -19,7 +19,7 @@ class Workout {
     return {
       'id': id,
       'name': name,
-      'difficulty': rank.toInt(),
+      'rank': rank.toInt(),
       'is_outside': isOutside,
     };
   }
@@ -28,7 +28,7 @@ class Workout {
     return Workout(
       id: map['id'],
       name: map['name'],
-      rank: Rank.values[map['difficulty']],
+      rank: Rank.values[map['rank']],
       isOutside: map['is_outside'],
     );
   }
