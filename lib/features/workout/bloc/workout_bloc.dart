@@ -14,8 +14,6 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
   WeatherRepository weatherRepository;
   WorkoutRepository workoutRepository;
 
-  Workout? currentWorkout;
-
   WorkoutBloc({
     required this.authRepository,
     required this.streaksRepository,
@@ -23,7 +21,6 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     required this.workoutRepository,
   }) : super(WorkoutInitial()) {
     on<WorkoutInitialEvent>((event, emit) async {
-      // TODO: implement event handler
       emit(WorkoutLoadingState());
 
       var userId = await authRepository.userId();
@@ -43,16 +40,26 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
 
       emit(WorkoutAvailableState(availableWorkouts: availableWorkouts));
     });
-    on<WorkoutSelectedEvent>((event, emit) {
-      // TODO add selection logic to streaks
-      currentWorkout = event.selectedWorkout;
+    on<WorkoutSelectedEvent>((event, emit) async {
+      var userId = await authRepository.userId();
+      if (userId == null) {
+        return;
+      }
+      var currentWorkout = event.selectedWorkout;
 
-      emit(WorkoutInProgressState(workout: event.selectedWorkout));
+      await streaksRepository.setCurrentWorkout(userId, currentWorkout);
+
+      emit(WorkoutInProgressState(workout: currentWorkout));
     });
-    on<WorkoutCompletedEvent>((event, emit) {
-      // TODO add completion logic to streaks
+    on<WorkoutCompletedEvent>((event, emit) async {
+      var userId = await authRepository.userId();
+      if (userId == null) {
+        return;
+      }
+      var currentWorkout = await streaksRepository.getCurrentWorkout(userId);
+
       if (currentWorkout != null) {
-        emit(WorkoutCompletedState(workout: currentWorkout!));
+        emit(WorkoutCompletedState(workout: currentWorkout));
       }
     });
   }
