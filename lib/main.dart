@@ -16,10 +16,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // TODO replace with an actual url and anonKey
   await Supabase.initialize(
-    url: 'YOUR_SUPABASE_URL',
-    anonKey: 'YOUR_SUPABASE_ANON_KEY',
+    url: 'https://ylydmkeeqyuloeytfyez.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlseWRta2VlcXl1bG9leXRmeWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA0NjQ5ODQsImV4cCI6MjA1NjA0MDk4NH0.u3Y476Ym5J_3xB7CjhTkaf_YX6WOmYK7MQ_e3tmbDio',
   );
 
   runApp(const MyApp());
